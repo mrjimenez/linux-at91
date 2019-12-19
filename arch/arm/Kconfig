@@ -223,7 +223,7 @@ config GENERIC_ISA_DMA
 	bool
 
 config FIQ
-	bool
+	def_bool y
 
 config NEED_RET_TO_USER
 	bool
