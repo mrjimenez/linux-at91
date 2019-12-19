@@ -256,6 +256,19 @@ static irqreturn_t ch2_irq(int irq, void *handle)
 	return IRQ_NONE;
 }
 
+static irqreturn_t ch2_irq_nocheck(int irq, void *handle)
+{
+	struct tc_clkevt_device	*dev = handle;
+
+	dev->clkevt.event_handler(&dev->clkevt);
+	return IRQ_HANDLED;
+}
+
+irq_handler_t tcb_clksrc_irq = NULL;
+void         *tcb_clksrc_handle = NULL;
+EXPORT_SYMBOL(tcb_clksrc_irq);
+EXPORT_SYMBOL(tcb_clksrc_handle);
+
 static int __init setup_clkevents(struct atmel_tc *tc, int clk32k_divisor_idx)
 {
 	int ret;
@@ -288,6 +301,8 @@ static int __init setup_clkevents(struct atmel_tc *tc, int clk32k_divisor_idx)
 		clk_disable_unprepare(tc->slow_clk);
 		return ret;
 	}
+	tcb_clksrc_irq = ch2_irq_nocheck;
+	tcb_clksrc_handle = &clkevt;
 
 	clockevents_config_and_register(&clkevt.clkevt, 32768, 1, 0xffff);
 
