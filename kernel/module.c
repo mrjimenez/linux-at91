@@ -2104,7 +2104,7 @@ static void free_module_elf(struct module *mod)
 
 void __weak module_memfree(void *module_region)
 {
-	vfree(module_region);
+	kfree(module_region);
 }
 
 void __weak module_arch_cleanup(struct module *mod)
