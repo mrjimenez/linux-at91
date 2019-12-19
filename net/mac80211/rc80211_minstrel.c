@@ -513,8 +513,8 @@ minstrel_rate_init(void *priv, struct ieee80211_supported_band *sband,
 		unsigned int cw = mp->cw_min;
 		int shift;
 
-		if (!rate_supported(sta, sband->band, i))
-			continue;
+		// if (!rate_supported(sta, sband->band, i))
+		// 	continue;
 		if ((rate_flags & sband->bitrates[i].flags) != rate_flags)
 			continue;
 
