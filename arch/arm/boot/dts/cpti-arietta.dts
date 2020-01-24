@@ -57,7 +57,7 @@
 			};
 			spi1: spi@f0004000 {
 				status = "okay";
-				cs-gpios = <&pioA 8 0>, <&pioA 0 0>;
+				cs-gpios = <&pioA 8 0>;
 				device@0 {
 					compatible = "adserial_drv";
 					spi-max-frequency = <5000000>;	    // 5 MHz
