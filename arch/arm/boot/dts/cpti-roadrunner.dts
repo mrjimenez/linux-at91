@@ -204,15 +204,21 @@
 				status = "disabled";
 			};
 
-			/*
 			adc: adc@fc030000 {
+				compatible = "atmel,sama5d2-adc";
 				vddana-supply = <&vdd_3v3_lp_reg>;
 				vref-supply = <&vdd_3v3_lp_reg>;
 				pinctrl-names = "default";
 				pinctrl-0 = <&pinctrl_adc_default>;
-				status = "disabled";
+				status = "okay";
+
+				vdd_3v3_lp_reg: REG_LDO2 {
+					regulator-name = "VDD_3V3_LP";
+					regulator-min-microvolt = <3300000>;
+					regulator-max-microvolt = <3300000>;
+					regulator-always-on;
+				};
 			};
-			*/
 
 			pinctrl@fc038000 {
 				/* Set as GPIO the pins that are not by default */
@@ -242,7 +248,9 @@
 				 * state when the pin is not muxed to the adc.
 				 */
 				pinctrl_adc_default: adc_default {
-					pinmux = <PIN_PD23__GPIO>;
+					pinmux = <PIN_PD19__GPIO>,
+						<PIN_PD20__GPIO>,
+						<PIN_PD23__GPIO>;
 					bias-disable;
 				};
 
