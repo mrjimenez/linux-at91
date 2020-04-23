@@ -1,0 +1,7 @@
+arch/arm/include
+arch/arm/include/generated/uapi
+arch/arm/include/generated
+include
+arch/arm/include/uapi
+include/uapi
+include/generated/uapi
