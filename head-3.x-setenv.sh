@@ -79,6 +79,18 @@
 # PILOX_MAKE_ARGS=${ARCH_AND_CROSS}
 #
 
+#-------------------------------------------------------------------------------
+# A1_TOOLCHAIN_NAME=arm-buildroot-linux-gnueabi
+# A2_TOOLCHAIN_FILE=${A1_TOOLCHAIN_NAME}_sdk-buildroot-kh_4.9-gcc_9-arm
+# A3_TOOLCHAIN_PATH=/usr/local/toolchains/${A2_TOOLCHAIN_FILE}/bin
+# A4_CROSS_COMPILE=${A1_TOOLCHAIN_NAME}-
+# ARCH=arm
+# ARCH_AND_CROSS=ARCH=${ARCH} CROSS_COMPILE=${A4_CROSS_COMPILE}
+# PATH=${A3_TOOLCHAIN_PATH}:${PATH}
+# PIG_ROOTFS_ARCH=${PWD}/${ARCH}
+# PILOX_MAKE_ARGS=${ARCH_AND_CROSS} PREFIX=${PIG_ROOTFS_ARCH}
+
+
 ARCH=arm
 #CROSS_COMPILE=arm-buildroot-linux-gnueabi-
 CROSS_COMPILE=arm-buildroot-linux-gnueabihf-
