@@ -49,6 +49,9 @@
 					bus-width = <4>;
 				};
 			};
+			i2c1: i2c@f8014000 {
+				status ="okay";
+			};
 			usart0: serial@f801c000 {
 				pinctrl-0 = <&pinctrl_usart0>;
 				/* habilita DMA */
