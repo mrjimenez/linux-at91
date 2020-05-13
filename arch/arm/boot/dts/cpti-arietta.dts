@@ -20,6 +20,8 @@
 		stdout-path = "serial0:115200n8";
 		//bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait";
 		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait";
+		//bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait dyndbg=\"file sched_clock.c +p\"";
+		//dyndebug.verbose=1 dyndbg="file sched_clock.c +p; file timer-atmel-tcb.c +p; file clocksource.c +p;";
 		//dyndebug.verbose=1 dyndbg="module g_ether +p; module libcomposite +p";
 		//bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait no_console_suspend";
 		//bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait no_console_suspend ignore_loglevel initcall_debug";
@@ -31,9 +33,9 @@
 		slow_xtal {
 			clock-frequency = <32768>;
 		};
-		main_xtal { 
-			clock-frequency = <12000000>; 
-		}; 
+		main_xtal {
+			clock-frequency = <12000000>;
+		};
 	};
 	ahb {
 		apb {
@@ -64,7 +66,17 @@
 					reg = <0>;
 				};
 			};
+			tcb0: timer@f8008000 {
+				timer@0 {
+					compatible = "atmel,tcb-timer";
+					reg = <0>;
+				};
 
+				timer@1 {
+					compatible = "atmel,tcb-timer";
+					reg = <1>;
+				};
+			};
 			ssc0: ssc@f0010000 {
 				status = "okay";
 			};
