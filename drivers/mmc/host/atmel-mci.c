@@ -2304,6 +2304,12 @@ static int atmci_init_slot(struct atmel_mci *host,
 		if (slot_data->bus_width >= 8)
 			mmc->caps |= MMC_CAP_8_BIT_DATA;
 	}
+	/*
+	 * MCI controller will accept opcodes such as ERASE just fine, no special
+	 * support is needed. However if capability is not set it won't be used
+	 * regardless of what CSD reports.
+	 */
+	mmc->caps |= MMC_CAP_ERASE;
 
 	if (atmci_get_version(host) < 0x200) {
 		mmc->max_segs = 256;
